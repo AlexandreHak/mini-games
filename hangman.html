@@ -5,24 +5,28 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Mini-Games - Palindrome</title>
+  <title>Mini-Games</title>
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-  <link rel="stylesheet" href="styles/palindrome.css">
+  <link rel="stylesheet" href="styles/hangman.css">
 </head>
 
 <body>
   <header class="header">
     <nav class="header__nav">
       <ul class="header__ul">
+        
         <li>
           <a href="index.html">Home</a>
         </li>
+
         <li>
           <a href="palindrome.html">Palindrome</a>
         </li>
+
         <li>
           <a href="hangman.html">Hangman</a>
         </li>
+
         <li class="header__dropdown-btn">
           <a href="#">Board Games</a>
           <ul class="header__dropdown-list">
@@ -34,21 +38,18 @@
             </li>
           </ul>
         </li>
+
       </ul>
     </nav>
   </header>
 
   <main>
-    <h2>Is it Palindrome ?</h2>
-
-    <form id="form">
-      <input type="text" name="test" id="form__input" autofocus>
-    </form>
-
-    <div id="feedback">Type something</div>
+    <div id="hangman">hangman</div>
+    <div id="letters">letters</div>
   </main>
 
-  <script src="js/palindrome.js"></script>
+  <footer></footer>
+  <script src="js/hangman.js"></script>
 </body>
 
 </html>

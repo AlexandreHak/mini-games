@@ -55,6 +55,7 @@ body {
 }
 
 .header__dropdown-list {
+  position: relative;
   display: none;
 }
 
