@@ -5,10 +5,10 @@ const FEEDBACK = document.getElementById("feedback");
 FORM.addEventListener("submit", function(e) {
   e.preventDefault();
 
-  if (isPalindrome(FORM_INPUT.value.replace(/\s/g, ""))) {
-    FEEDBACK.innerHTML = "<em>" + FORM_INPUT.value + "</em> is a palindrome !";
+  if (isPalindrome(FORM_INPUT.value.replace(/\s/g, ''))) {
+    FEEDBACK.innerHTML = '<em>' + FORM_INPUT.value + '</em> is a palindrome !';
   } else {
-    FEEDBACK.innerText = "NOPE !";
+    FEEDBACK.innerHTML = '<em>'+ FORM_INPUT.value + '</em>' + ' is <b>NOT</b> a palindrome !';
   }
 });
 

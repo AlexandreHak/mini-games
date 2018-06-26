@@ -2,5 +2,52 @@
 
 main {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 25% 1fr;
+}
+
+/* Common / Layout */
+
+#letters-list, #used-letters-list {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+/* Main */
+
+#guess-word {
+  margin: auto;
+  font-size: 2rem;
+}
+
+.guess-letter {
+  padding: 3px;
+}
+
+
+#letters-list {
+  grid-column: 2 / 3;
+}
+
+#used-letters-list {
+  grid-column: 2 / 3;
+  color: red; 
+}
+
+.letter-btn {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  padding: 0.5rem;
+  margin: 1px; 
+  text-align: center;
+}
+
+.letter-btn:hover {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+}
+
+.used-letter {
+  background-color: var(--main-bg-color);
+  color: var(--primary-color);
 }
