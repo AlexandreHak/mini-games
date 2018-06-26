@@ -1,7 +1,8 @@
-const HANGMAN = document.getElementById("hangman");
-const GUESS_WORD = document.getElementById("guess-word");
-const LETTERS_LIST = document.getElementById("letters-list");
-const USED_LETTERS_LIST = document.getElementById("used-letters-list");
+const HANGMAN = document.getElementById('hangman');
+const GUESS_WORD = document.getElementById('guess-word');
+const LETTERS_LIST = document.getElementById('letters-list');
+const USED_LETTERS_LIST = document.getElementById('used-letters-list');
+const HANGMAN_BODY = document.getElementById('hangman__body');
 
 let hangmanGame = {
   randName: [],
@@ -55,9 +56,9 @@ let hangmanGame = {
 
     this.status();
   },
-  drawHangman: function(reset = false) {
-    if (reset) {
-    }
+  drawHangman: function() {
+    let index = Math.abs(this.life - 6);
+    HANGMAN_BODY.children[index].classList.remove('hidden');
   },
   /**
    * @param guessLetter if null then fully draw guess letter

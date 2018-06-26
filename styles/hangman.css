@@ -45,9 +45,16 @@ main {
 .letter-btn:hover {
   background-color: var(--primary-color);
   color: var(--secondary-color);
+  cursor: pointer;
 }
 
 .used-letter {
   background-color: var(--main-bg-color);
   color: var(--primary-color);
+}
+
+/* Hangman */
+
+.hidden {
+  display: none;
 }
