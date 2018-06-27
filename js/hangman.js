@@ -80,6 +80,14 @@ let hangmanGame = {
       );
     });
   },
+  showRandName: function() {
+    this.randName.forEach(function (letter) {
+      GUESS_WORD.insertAdjacentHTML(
+        "beforeend",
+        `<span class="guess-letter">${letter}</span>`
+      );
+    });
+  },
   updateLetterBtn: function(letter = null, reset = null) {
     if (letter) {
       letter.classList.remove("clickable");
@@ -112,8 +120,10 @@ let hangmanGame = {
     if (replay) {
       window.location.reload();
     } else {
+      this.clearGuessWord();
+      this.showRandName();
+
       LETTERS_LIST.remove();
-      
       GUESS_WORD.insertAdjacentHTML(
         'afterend',
         '<button id="replay-btn">Replay</button>'
