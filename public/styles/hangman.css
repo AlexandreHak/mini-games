@@ -58,3 +58,7 @@ main {
 .hidden {
   display: none;
 }
+
+.replay-btn {
+  margin: auto;
+}
