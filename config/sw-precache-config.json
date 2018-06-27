@@ -1,0 +1,13 @@
+{
+  "staticFileGlobs": [
+    "public/*",
+    "routes/*"
+  ],
+  "runtimeCaching": [{
+    "urlPattern": "/public/*",
+    "handler": "networkFirst"
+  }, {
+      "urlPattern": "/routes/*",
+      "handler": "networkFirst"
+  }]
+}

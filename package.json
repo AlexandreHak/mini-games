@@ -19,5 +19,8 @@
   "homepage": "https://github.com/AlexandreHak/mini-games#readme",
   "dependencies": {
     "express": "^4.16.3"
+  },
+  "devDependencies": {
+    "sw-precache": "^5.2.1"
   }
 }
