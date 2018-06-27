@@ -8,5 +8,5 @@ Have fun !
 - [x] Hangman
 - [ ] Tic-tac-toe
 - [ ] Sudoku
-- [ ] Deploy on Heroku (Nginx)
+- [x] Deploy on Heroku
 - [ ] Offline with wp-precache
