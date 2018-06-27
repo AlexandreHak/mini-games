@@ -1,0 +1,23 @@
+{
+  "name": "mini-games",
+  "version": "1.0.0",
+  "description": "Have fun !",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlexandreHak/mini-games.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlexandreHak/mini-games/issues"
+  },
+  "homepage": "https://github.com/AlexandreHak/mini-games#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
