@@ -17,6 +17,11 @@ main {
   justify-content: center;
 }
 
+#form__input {
+  font-size: 20px;
+  text-align: center;
+}
+
 #feedback {
   padding: 1rem;
   text-align: center;

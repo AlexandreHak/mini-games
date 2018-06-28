@@ -1,28 +1,53 @@
-const HANGMAN = document.getElementById('hangman');
+// node doesn't support 'experimental) ECMAScript Modules
+const RANDOM_WORDS = [
+  'hello world',
+  'pizza',
+  'kamehameha',
+  'welcome to the jungle',
+  'john doe',
+  'yes we can'
+];
+
 const GUESS_WORD = document.getElementById('guess-word');
 const LETTERS_LIST = document.getElementById('letters-list');
 const USED_LETTERS_LIST = document.getElementById('used-letters-list');
 const HANGMAN_BODY = document.getElementById('hangman__body');
 
+
 let hangmanGame = {
-  randName: [],
+  randWord: null,
   guessWord: [],
   usedLetters: [],
   life: 6,
-  fetchRandName: function() {
-    return fetch(
-      "https://jsonplaceholder.typicode.com/users/" +
-        Math.floor(Math.random() * 10 + 1)
-    )
-      .then(response => response.json())
-      .catch(error => console.error("Error:", error))
-      .then(
-        json =>
-          (this.randName = this.filterAlphanumeric(json.name)
-            .toUpperCase()
-            .split(''))
-      );
+  /**
+   * Get random word then filter and turn it to array of letters
+   * @param {array} names Array of strings
+   * @return {string}
+   */
+  fetchRandWord: function(names) {
+    this.randWord = RANDOM_WORDS[getRandomInt(RANDOM_WORDS.length - 1)];
+    this.randWord = filterAlphanumeric(this.randWord.toUpperCase());
+    this.randWord = this.randWord.split('');
+    
+    function getRandomInt(max) {
+      return Math.floor(Math.random() * Math.floor(max));
+    }
+
+    /**
+     * Only alphanumeric words are valid
+     * @param {string} str A random word
+     * @return {string} filtered valid string
+     */
+    function filterAlphanumeric(str) {
+      return str.replace(/[^0-9a-z ]/gi, '');
+    }
   },
+  /**
+   * Create all clickable letters buttons
+   * @param {HTMLElement} targetElement in which letters are inserted 
+   * @param {string} letters Each chars is a button 
+   * @return {void}
+   */
   createLettersBtn: function(
     targetElement,
     letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -34,9 +59,11 @@ let hangmanGame = {
       );
     }
   },
-  filterAlphanumeric: function(str) {
-    return str.replace(/[^0-9a-z ]/gi, "");
-  },
+  /**
+   * Initiate the game by drawing hidden letters
+   * @param {string} word
+   * @return {void}
+   */
   initiateGuessWord: function(word) {
     for (const letter of word) {
       if (letter !== " ") {
@@ -46,8 +73,11 @@ let hangmanGame = {
       }
     }
   },
+  /**
+   * 
+   */
   evaluateLetter: function(letter) {
-    if (this.randName.includes(letter)) {
+    if (this.randWord.includes(letter)) {
       this.drawGuessWord(letter);
     } else {
       this.drawHangman();
@@ -65,7 +95,7 @@ let hangmanGame = {
    */
   drawGuessWord: function(guessLetter = null) {
     if (guessLetter) {
-      this.randName.forEach((letter, index) => {
+      this.randWord.forEach((letter, index) => {
         if (letter === guessLetter) {
           this.guessWord[index] = letter;
         }
@@ -80,8 +110,8 @@ let hangmanGame = {
       );
     });
   },
-  showRandName: function() {
-    this.randName.forEach(function (letter) {
+  showRandWord: function() {
+    this.randWord.forEach(function (letter) {
       GUESS_WORD.insertAdjacentHTML(
         "beforeend",
         `<span class="guess-letter">${letter}</span>`
@@ -121,7 +151,7 @@ let hangmanGame = {
       window.location.reload();
     } else {
       this.clearGuessWord();
-      this.showRandName();
+      this.showRandWord();
 
       LETTERS_LIST.remove();
       GUESS_WORD.insertAdjacentHTML(
@@ -135,11 +165,11 @@ let hangmanGame = {
   }
 };
 
-hangmanGame.fetchRandName().then(() => {
-  hangmanGame.initiateGuessWord(hangmanGame.randName);
-  hangmanGame.drawGuessWord();
-  hangmanGame.createLettersBtn(LETTERS_LIST);
-});
+// hangmanGame.start();
+hangmanGame.fetchRandWord();
+hangmanGame.initiateGuessWord(hangmanGame.randWord);
+hangmanGame.drawGuessWord();
+hangmanGame.createLettersBtn(LETTERS_LIST);
 
 LETTERS_LIST.addEventListener('click', e => {
   if (e.target.classList.contains("letter-btn", "clickable")) {
