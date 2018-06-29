@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mini-Games - Tic-tac-toe</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <link rel="stylesheet" href="styles/tic-tac-toe.css">
+</head>
+
+<body>
+  <header class="header">
+    <nav class="header__nav">
+      <ul class="header__ul">
+        <li>
+          <a href="/">Home</a>
+        </li>
+        <li>
+          <a href="palindrome">Palindrome</a>
+        </li>
+        <li>
+          <a href="hangman">Hangman</a>
+        </li>
+
+        <li class="header__dropdown-btn">
+          <a href="#">Board Games</a>
+          <ul class="header__dropdown-list">
+            <li>
+              <a href="tic-tac-toe">Tic-tac-toe</a>
+            </li>
+            <li>
+              <a href="sudoku">Sudoku</a>
+            </li>
+          </ul>
+        </li>
+
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <table id="board">
+      <tr id="row-1">
+        <td class="cell empty"></td>
+        <td class="cell empty"></td>
+        <td class="cell empty"></td>
+      </tr>
+      <tr id="row-2">
+        <td class="cell empty"></td>
+        <td class="cell empty"></td>
+        <td class="cell empty"></td>
+      </tr>
+      <tr id="row-3">
+        <td class="cell empty"></td>
+        <td class="cell empty"></td>
+        <td class="cell empty"></td>
+      </tr>
+    </table>
+
+    <div id="endgame">
+      <div id="endgame__feedback"></div>
+      <button id="endgame__replay-btn">Replay</button>
+    </div>
+  </main>
+
+
+  <script src="js/tic-tac-toe.js"></script>
+</body>
+
+</html>
