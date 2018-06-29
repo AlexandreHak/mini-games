@@ -13,14 +13,21 @@ const LETTERS_LIST = document.getElementById('letters-list');
 const USED_LETTERS_LIST = document.getElementById('used-letters-list');
 const HANGMAN_BODY = document.getElementById('hangman__body');
 
-console.log(RANDOM_WORDS);
-
-
 let hangmanGame = {
   randWord: null,
   guessWord: [],
   usedLetters: [],
   life: 6,
+  /**
+   * Initiate the game by inserting buttons...
+   * @return {undefined}
+   */
+  start: function () {
+    this.fetchRandWord();
+    this.initiateGuessWord(this.randWord);
+    this.drawGuessWord();
+    this.createLettersBtn(LETTERS_LIST);
+  },
   /**
    * Get random word then filter and turn it to array of letters
    * @param {array} names Array of strings
@@ -76,7 +83,8 @@ let hangmanGame = {
     }
   },
   /**
-   * 
+   * Evaluate whether player guessed well or not
+   * @return {undefined}
    */
   evaluateLetter: function(letter) {
     if (this.randWord.includes(letter)) {
@@ -88,12 +96,16 @@ let hangmanGame = {
 
     this.status();
   },
+  /**
+   * Draw hangman body part according to player life
+   * @return {undefined}
+   */
   drawHangman: function() {
     let index = Math.abs(this.life - 6);
     HANGMAN_BODY.children[index].classList.remove('hidden');
   },
   /**
-   * Redraw word to guess each time
+   * Redraw word to guess each time user click on the buttons
    * @param {?string} guessLetter if null then fully draw guess letter
    * @return {undefined} 
    */
@@ -114,6 +126,10 @@ let hangmanGame = {
       );
     });
   },
+  /**
+   * Display the answer to guess if player loses
+   * @return {undefined}
+   */
   showRandWord: function() {
     this.randWord.forEach(function (letter) {
       GUESS_WORD.insertAdjacentHTML(
@@ -122,21 +138,37 @@ let hangmanGame = {
       );
     });
   },
-  updateLetterBtn: function(letter = null, reset = null) {
+  /**
+   * When player click on a button, remove its click ability and move it to already cilcked group
+   * @param {?string} letter 
+   * @return {undefined}
+   */
+  updateLetterBtn: function(letter = null) {
     if (letter) {
       letter.classList.remove("clickable");
       letter.classList.add("used-letter");
       USED_LETTERS_LIST.appendChild(letter);
     }
   },
+  /**
+   * Decrease player life point by one
+   * @param {boolean} reset
+   * @return {undefined}
+   */
   updateLife: function(reset = false) {
     this.life = reset ? 6 : this.life - 1;
   },
+  /**
+   * Clear guess word HTMLElement
+   * @return {undefined}
+   */
   clearGuessWord: function() {
     GUESS_WORD.innerHTML = "";
   },
   /**
-   * Check for game status at each evaluation
+   * Take appropriate action depending on whether user found letter or not 
+   * @param {boolean} found
+   * @return {undefined}
    */
   status: function(found = false) {
     if (this.life <= 0) {
@@ -147,6 +179,11 @@ let hangmanGame = {
       this.reset(true);
     }
   },
+  /**
+   * After game finished, dislay game message and replay button
+   * @param {boolean} won
+   * @return {undefined}
+   */
   reset: function(won) {
     let msg = won ? "Well play !" : "Bad choices !";
     let replay = window.confirm(msg + " Do you want to play again ?");
@@ -169,16 +206,13 @@ let hangmanGame = {
   }
 };
 
-// hangmanGame.start();
-hangmanGame.fetchRandWord();
-hangmanGame.initiateGuessWord(hangmanGame.randWord);
-hangmanGame.drawGuessWord();
-hangmanGame.createLettersBtn(LETTERS_LIST);
+hangmanGame.start();
 
 LETTERS_LIST.addEventListener('click', e => {
-  if (e.target.classList.contains("letter-btn", "clickable")) {
+  if (e.target.classList.contains('letter-btn', 'clickable')) {
+    // remove clickable btn
     hangmanGame.updateLetterBtn(e.target);
+    // then evaluate clicked letter
     hangmanGame.evaluateLetter(e.target.innerText);
-    // draw hangman if false or letter
   }
 });
