@@ -1,4 +1,4 @@
-// node doesn't support 'experimental) ECMAScript Modules
+// node doesn't support ECMAScript Modules (experimental)
 const RANDOM_WORDS = [
   'hello world',
   'pizza',
@@ -12,6 +12,8 @@ const GUESS_WORD = document.getElementById('guess-word');
 const LETTERS_LIST = document.getElementById('letters-list');
 const USED_LETTERS_LIST = document.getElementById('used-letters-list');
 const HANGMAN_BODY = document.getElementById('hangman__body');
+
+console.log(RANDOM_WORDS);
 
 
 let hangmanGame = {
@@ -46,7 +48,7 @@ let hangmanGame = {
    * Create all clickable letters buttons
    * @param {HTMLElement} targetElement in which letters are inserted 
    * @param {string} letters Each chars is a button 
-   * @return {void}
+   * @return {undefined}
    */
   createLettersBtn: function(
     targetElement,
@@ -62,7 +64,7 @@ let hangmanGame = {
   /**
    * Initiate the game by drawing hidden letters
    * @param {string} word
-   * @return {void}
+   * @return {undefined}
    */
   initiateGuessWord: function(word) {
     for (const letter of word) {
@@ -91,7 +93,9 @@ let hangmanGame = {
     HANGMAN_BODY.children[index].classList.remove('hidden');
   },
   /**
-   * @param guessLetter if null then fully draw guess letter
+   * Redraw word to guess each time
+   * @param {?string} guessLetter if null then fully draw guess letter
+   * @return {undefined} 
    */
   drawGuessWord: function(guessLetter = null) {
     if (guessLetter) {
