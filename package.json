@@ -4,7 +4,8 @@
   "description": "Have fun !",
   "main": "index.js",
   "scripts": {
-    "test": "jest --watchAll"
+    "serve": "nodemon index.js",
+    "test": "jest test/palindrome.test.js"
   },
   "repository": {
     "type": "git",

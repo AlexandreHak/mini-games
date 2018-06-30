@@ -37,7 +37,7 @@ function testPalindrome(value) {
 }
 
 /**
- * Run npm test
+ * Run test : npm run test
  */
 describe("Are valid palindrome", () => {
   test("without spaces or punctuations", () => {
